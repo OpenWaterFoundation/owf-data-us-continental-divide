@@ -1,0 +1,14 @@
+# Upload the Continental Divide dataset to the Open Water Foundation's
+# data.openwaterfoundation.org website.
+#
+# Upload the files:
+# - geojson files output by GeoProcessor
+# - dataset metadata files needed for landing page
+AwsS3(S3Command="UploadObjects",Region="us-west-2",Bucket="data.openwaterfoundation.org",UploadFiles="../data/continental-divide-co.geojson:country/us/usgs/continental-divide/continental-divide-co.geojson,../data/continental-divide-nm.geojson:country/us/usgs/continental-divide/continental-divide-nm.geojson,../data/continental-divide-wy.geojson:country/us/usgs/continental-divide/continental-divide-wy.geojson,../data/continental-divide-us.geojson:country/us/usgs/continental-divide/continental-divide-us.geojson,dataset.json:country/us/usgs/continental-divide/dataset.json,dataset.png:country/us/usgs/continental-divide/dataset.png,dataset-details.md:country/us/usgs/continental-divide/dataset-details.md")
+#
+# Invalidate so that files are available on the CDN as soon as possible.
+# AwsCloudFront(CloudFrontCommand="ListDistributions",Region="aws-global",Comment="*data.openwaterfoundation.org*",OutputTableID="Distributions")
+AwsCloudFront(CloudFrontCommand="InvalidateDistribution",Region="aws-global",Comment="*data.openwaterfoundation.org*",InvalidationPaths="/country/us/usgs/continental-divide/*")
+#
+# Create the dataset catalog with landing page.
+AwsS3Catalog(Region="us-west-2",Bucket="data.openwaterfoundation.org",StartingPrefix="country/us/usgs/continental-divide",DatasetIndexFile="Temp",CssUrl="/css/data-site.css",OutputTableID="Datasets",KeepFiles=True,UploadFiles=True)
