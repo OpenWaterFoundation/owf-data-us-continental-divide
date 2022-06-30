@@ -1,10 +1,11 @@
 # owf-data-us-continental-divide
 
 GeoJSON files for US continental divide, full layer and for each state.
-These are useful for simple, direct access.
+These are useful to directly add the layer to a web application map without processing.
 
 * [Overview](#overview)
 * [Repository Contents](#repository-contents)
+* [Published Dataset](#published-dataset)
 * [Workflow](#workflow)
 * [Credits](#credits)
 * [License](#license)
@@ -32,6 +33,11 @@ data/
 workflow/                          Workflow command files.
    create-layers.gp                GeoProcessor file to create GeoJSON files.
 ```
+
+## Published Dataset ##
+
+The published dataset files are available in the `data` folder of this repository and also the
+[Open Water Foundation data site](https://data.openwaterfoundation.org/country/us/continental-divide/).
 
 ## Workflow ##
 

@@ -1,25 +1,25 @@
-# Ignore the following files (do not commit working files to repository)
+# Ignore the following files (do not commit working files to repository).
 
-# Ignore dynamic download files
+# Ignore dynamic download files:
 # - keep the README file
 
 /downloads/*
 !/downloads/README.md
 
-# Ignore temporary files from editors
+# Ignore temporary files from editors.
 
-# vi/vim
+# vi/vim temporary files.
 *.swp
 *.swo
 
-# Program log files
+# Program log files.
 
 *.log
 
-# Word
+# Word temporary files.
 #~$*.doc*
-# Excel
+# Excel temporary files.
 #~$*.xls*
-# PowerPoint
+# PowerPoint temporary files.
 #~$*.ppt*
 ~$*

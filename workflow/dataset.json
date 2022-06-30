@@ -1,0 +1,24 @@
+{
+  "title": "Continental Divide",
+  "description": "Continental divide based on USGS basins.",
+  "identifier": "owf-data-us-continental-divide",
+  "landingPage": "https://data.openwaterfoundation.org/country/us/usgs/continental-divide/",
+  "issued": "2022-06-30",
+  "keyword": [
+    "line",
+    "continental divide"
+  ],
+  "publisher": {
+    "name": "Open Water Foundation",
+    "mbox": "info@openwaterfoundation.org"
+  },
+  "distribution": [
+    {
+      "accessURL": "",
+      "byteSize": null,
+      "description": "Resource locator",
+      "format": "application/geo+json",
+      "title": "Continental Divide"
+    }
+  ]
+}
