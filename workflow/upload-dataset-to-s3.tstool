@@ -1,3 +1,4 @@
+StartLog(LogFile="upload-dataset-to-s3.tstool.log")
 # Upload the Continental Divide dataset to the Open Water Foundation's
 # data.openwaterfoundation.org website.
 #
@@ -11,4 +12,4 @@ AwsS3(S3Command="UploadObjects",Region="us-west-2",Bucket="data.openwaterfoundat
 AwsCloudFront(CloudFrontCommand="InvalidateDistribution",Region="aws-global",Comment="*data.openwaterfoundation.org*",InvalidationPaths="/country/us/usgs/continental-divide/*")
 #
 # Create the dataset catalog with landing page.
-AwsS3Catalog(Region="us-west-2",Bucket="data.openwaterfoundation.org",StartingPrefix="country/us/usgs/continental-divide",DatasetIndexFile="Temp",CssUrl="/css/data-site.css",OutputTableID="Datasets",KeepFiles=True,UploadFiles=True)
+AwsS3Catalog(Region="us-west-2",Bucket="data.openwaterfoundation.org",StartingPrefix="country/us/usgs/continental-divide",DistributionId="*data.openwaterfoundation.org*",DatasetIndexFile="Temp",DatasetIndexHeadFile="../../owf-website-data/inserts/head-insert.html",DatasetIndexBodyFile="../../owf-website-data/inserts/body-nav-insert.html",DatasetIndexFooterFile="../../owf-website-data/inserts/footer-insert.html",UploadDatasetFiles=True,OutputTableID="Datasets",KeepFiles=True)
