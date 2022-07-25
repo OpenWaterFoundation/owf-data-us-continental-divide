@@ -1,4 +1,4 @@
-StartLog(LogFile="upload-dataset-to-s3.tstool.log")
+StartLog(LogFile="results/upload-dataset-to-s3.tstool.log")
 # Upload the Continental Divide dataset to the Open Water Foundation's
 # data.openwaterfoundation.org website.
 #
@@ -10,6 +10,22 @@ AwsS3(S3Command="UploadObjects",Region="us-west-2",Bucket="data.openwaterfoundat
 # Invalidate so that files are available on the CDN as soon as possible.
 # AwsCloudFront(CloudFrontCommand="ListDistributions",Region="aws-global",Comment="*data.openwaterfoundation.org*",OutputTableID="Distributions")
 AwsCloudFront(CloudFrontCommand="InvalidateDistribution",Region="aws-global",Comment="*data.openwaterfoundation.org*",InvalidationPaths="/country/us/usgs/continental-divide/*")
+# Run the following to invalidate files that were manually updated using the AWS console.
+# AwsCloudFront(CloudFrontCommand="InvalidateDistribution",Region="aws-global",Comment="*data.openwaterfoundation.org*",InvalidationPaths="/css/data-site.css*")
 #
-# Create the dataset catalog with landing page.
-AwsS3Catalog(Region="us-west-2",Bucket="data.openwaterfoundation.org",StartingPrefix="country/us/usgs/continental-divide",DistributionId="*data.openwaterfoundation.org*",DatasetIndexFile="Temp",DatasetIndexHeadFile="../../owf-website-data/inserts/head-insert.html",DatasetIndexBodyFile="../../owf-website-data/inserts/body-nav-insert.html",DatasetIndexFooterFile="../../owf-website-data/inserts/footer-insert.html",UploadDatasetFiles=True,OutputTableID="Datasets",KeepFiles=True)
+# Create the dataset catalog with landing page:
+# - also list invalidations to see what is in process
+AwsS3Catalog(Region="us-west-2",Bucket="data.openwaterfoundation.org",StartingPrefix="country/us/usgs/continental-divide",DistributionId="*data.openwaterfoundation.org*",DatasetIndexFile="results/dataset-index.html",DatasetIndexHeadFile="../../owf-website-data/inserts/head-insert.html",DatasetIndexBodyFile="../../owf-website-data/inserts/body-nav-insert.html",DatasetIndexFooterFile="../../owf-website-data/inserts/footer-insert.html",UploadDatasetFiles=True,OutputTableID="Datasets",KeepFiles=True)
+# AwsCloudFront(CloudFrontCommand="ListInvalidations",Region="af-south-1",OutputTableID="InvalidationList")
+# Compare the local and S3 file to see how long it takes to be avaialable on S3.
+CompareFiles(InputFile1="results/dataset-index.html",InputFile2="https://s3.us-west-2.amazonaws.com/data.openwaterfoundation.org/country/us/usgs/continental-divide/index.html",IfDifferent=Warn,WaitUntil=FilesAreSame,WaitTimeout=600000,WaitInterval=60000)
+# Compare the local and CloudFront file to see how long it takes to be avaialable on CloudFront.
+CompareFiles(InputFile1="results/dataset-index.html",InputFile2="https://data.openwaterfoundation.org/country/us/usgs/continental-divide/index.html",IfDifferent=Warn,WaitUntil=FilesAreSame,WaitTimeout=600000,WaitInterval=60000)
+# Compare the index.html and folder name URLs to make sure that all variants were invalidated:
+# - the AWS configuration should automatically add index.html to folders
+CompareFiles(InputFile1="https://data.openwaterfoundation.org/country/us/usgs/continental-divide/index.html",InputFile2="https://data.openwaterfoundation.org/country/us/usgs/continental-divide/",IfDifferent=Warn,WaitUntil=FilesAreSame,WaitTimeout=600000,WaitInterval=60000)
+CompareFiles(InputFile1="https://data.openwaterfoundation.org/country/us/usgs/continental-divide/index.html",InputFile2="https://data.openwaterfoundation.org/country/us/usgs/continental-divide",IfDifferent=Warn,WaitUntil=FilesAreSame,WaitTimeout=600000,WaitInterval=60000)
+#
+# Retrieve the file served by CloudFront to confirm that it is as expected.
+# WebGet(URI="https://data.openwaterfoundation.org/country/us/usgs/continental-divide/index.html",LocalFile="results/cloudfront-index.html")
+# WebGet(URI="https://data.openwaterfoundation.org/css/data-site.css",LocalFile="results/cloudfront-data-site.css")
