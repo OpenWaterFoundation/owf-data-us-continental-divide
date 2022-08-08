@@ -9,16 +9,16 @@ The layer is created from Hydrologic Unit Code basin boundaries.
 The following files can be downloaded or used directly.
 The files are not versioned and may be updated periodically.
 
-| **Layer File** | **Description** |
-| -- | -- |
-| [`continental-divide-co.geojson`](continental-divide-co.geojson) | Continental divide, in Colorado. |
-| [`continental-divide-nm.geojson`](continental-divide-nm.geojson) | Continental divide, in New Mexico. |
-| [`continental-divide-us.geojson`](continental-divide-us.geojson) | Continental divide, for the United States. |
-| [`continental-divide-wy.geojson`](continental-divide-wy.geojson) | Continental divide, in Colorado. |
+| **Layer File** | **Description** | **View** |
+| -- | -- | -- |
+| [`continental-divide-us.geojson`](continental-divide-us.geojson) | Continental divide, for the United States. | [View](https://gavinr.github.io/geojson-viewer/?url=https://data.openwaterfoundation.org/country/us/usgs/continental-divide/continental-divide-us.geojson) |
+| [`continental-divide-co.geojson`](continental-divide-co.geojson) | Continental divide, in Colorado. | [View](https://gavinr.github.io/geojson-viewer/?url=https://data.openwaterfoundation.org/country/us/usgs/continental-divide/continental-divide-co.geojson) |
+| [`continental-divide-nm.geojson`](continental-divide-nm.geojson) | Continental divide, in New Mexico. | [View](https://gavinr.github.io/geojson-viewer/?url=https://data.openwaterfoundation.org/country/us/usgs/continental-divide/continental-divide-nm.geojson) |
+| [`continental-divide-wy.geojson`](continental-divide-wy.geojson) | Continental divide, in Colorado. | [View](https://gavinr.github.io/geojson-viewer/?url=https://data.openwaterfoundation.org/country/us/usgs/continental-divide/continental-divide-wy.geojson) |
 
 ## Workflow ##
 
-See the [`owf-data-us-continental-divide`](https://github.com/OpenWaterFoundation/owf-data-us-continental-divide/blob/master/README.md)
+See the [`owf-data-us-continental-divide`](https://github.com/OpenWaterFoundation/owf-data-us-continental-divide/blob/main/README.md)
 GitHub repository for information.
 
 ## Credits ##
